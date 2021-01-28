@@ -14,13 +14,13 @@ softwareCheck()
 installScript()
 {
 	echo "2.download quickLogin.sh"
-	wget -O /usr/local/bin/quickLogin.sh https://raw.githubusercontent.com/diseng/quickLogin/master/quickLogin.sh >/dev/null 2>&1
+	wget -O /usr/local/bin/quickLogin.sh https://raw.githubusercontent.com/aboutyang/quickLogin/master/quickLogin.sh >/dev/null 2>&1
 	if  [ $? -eq 0 ]; then
         echo "    download successful ✔"
         filePath="/usr/local/bin/quickLogin.sh"
 	else
 		echo "    download failed, use $HOME to replace /usr/local/bin and download again ×";
-		wget -O ~/quickLogin.sh https://raw.githubusercontent.com/diseng/quickLogin/master/quickLogin.sh >/dev/null 2>&1
+		wget -O ~/quickLogin.sh https://raw.githubusercontent.com/aboutyang/quickLogin/master/quickLogin.sh >/dev/null 2>&1
 		echo "    download successful ✔"
 		filePath="$HOME/quickLogin.sh"
 	fi
