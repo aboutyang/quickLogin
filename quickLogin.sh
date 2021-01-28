@@ -61,9 +61,9 @@ login()
 	var=$(echo $1 | bc 2>/dev/null)
 	if [ "$var" = "$1"  ]; then
 		host=$(grep -e "Host [a-zA-Z1-9].*" ~/.ssh/config|awk '{print $2}'|sed -n "$var"p)
-		ssh $host
+		ssh -A $host
 	else
-		ssh $1
+		ssh -A $1
 	fi
 #	utf8
 }
