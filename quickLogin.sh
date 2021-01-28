@@ -60,11 +60,16 @@ login()
 #	gbk
 	if echo $1 | grep -q '[^0-9]'
 	then
-		echo $1
-		ssh -A $1
+		host=$(grep -e "Host [a-zA-Z1-9].*" ~/.ssh/config|awk '{print $2}'|grep "$1" |sed -n "1,1p")
+		num=$(cat .ssh/config -n |grep "$host" |awk '{print $1}')
+		num=$((num+1))
+		hostname=$(cat ~/.ssh/config|sed -n "$num,1p" |awk '{print $2}')
+		echo $host $num $hostname
+		ssh -A $host
 	else
 		host=$(grep -e "Host [a-zA-Z1-9].*" ~/.ssh/config|awk '{print $2}'|sed -n "$1,1p")
-		echo $host
+		hostname=$(grep -e "HostName [a-zA-Z1-9].*" ~/.ssh/config|awk '{print $2}'|sed -n "$1,1p")
+		echo $host $hostname
 		ssh -A $host
 	fi
 #	utf8
