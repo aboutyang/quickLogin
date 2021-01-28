@@ -58,11 +58,12 @@ softwareCheck()
 login()
 {
 #	gbk
-	var=$(echo $1 | bc 2>/dev/null)
-	if [ "$var" = "$1"  ]; then
-		host=$(grep -e "Host [a-zA-Z1-9].*" ~/.ssh/config|awk '{print $2}'|sed -n "$var"p)
+	if [ "$1" -gt 0 ]; then
+		host=$(grep -e "Host [a-zA-Z1-9].*" ~/.ssh/config|awk '{print $2}'|sed -n "$1,1p")
+		echo $host
 		ssh -A $host
 	else
+		echo $1
 		ssh -A $1
 	fi
 #	utf8
